@@ -45,6 +45,9 @@ oneagent:
   trustedCAs: ""
   networkZone: ""
 
+psp:
+  apparmorEnabled: false
+
 secret:
   autoCreate: true
   apiToken: ""

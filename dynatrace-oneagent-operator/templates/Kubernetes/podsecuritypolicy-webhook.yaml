@@ -19,10 +19,12 @@ kind: PodSecurityPolicy
 metadata:
   name: dynatrace-oneagent-webhook
   annotations:
-    seccomp.security.alpha.kubernetes.io/allowedProfileNames: "docker/default"
+    {{- if .Values.psp.apparmorEnabled }}
     apparmor.security.beta.kubernetes.io/allowedProfileNames: "runtime/default"
-    seccomp.security.alpha.kubernetes.io/defaultProfileName: "docker/default"
     apparmor.security.beta.kubernetes.io/defaultProfileName: "runtime/default"
+    {{- end }}
+    seccomp.security.alpha.kubernetes.io/allowedProfileNames: "docker/default"
+    seccomp.security.alpha.kubernetes.io/defaultProfileName: "docker/default"
 spec:
   privileged: false
   allowPrivilegeEscalation: false
